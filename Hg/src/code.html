@@ -1,0 +1,191 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $(window).keyup(function(event){
+        var keyCode = event.keyCode;
+    
+        if (keyCode == 73)
+        {
+            $("#ibutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 75)
+        {
+            $("#kbutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 76)
+        {
+            $("#lbutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 74)
+        {
+            $("#jbutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 87)
+        {
+            $("#wbutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 65)
+        {
+            $("#abutton").css("background-color","#F0FFFF");
+        }
+    
+        if (keyCode == 83)
+        {
+            $("#sbutton").css("background-color","#F0FFFF");
+        }
+        
+        if (keyCode == 68)
+        {
+            $("#dbutton").css("background-color","#F0FFFF");
+        }
+     });
+  
+    $(window).keydown(function(event){
+        var keyCode = event.keyCode;
+        document.getElementById("throughput").value = keyCode;
+        if (keyCode == 73)
+        {
+            var leftspeed = parseInt(document.getElementById("leftspeed").value);
+            if (leftspeed < 9)
+            {
+                document.getElementById("leftspeed").value = leftspeed + 1;
+                $.ajax({
+                    url: '/control',
+                    type: 'POST',
+                    data: {left: document.getElementById("leftspeed").value}
+                });
+            }
+            $("#ibutton").css("background-color","yellow");
+        }
+    
+        if (keyCode == 75)
+        {
+            var leftspeed = parseInt(document.getElementById("leftspeed").value);
+            if (leftspeed > 0)
+            {
+                document.getElementById("leftspeed").value = leftspeed - 1;
+                $.ajax({
+                    url: '/control',
+                    type: 'POST',
+                    data: {left: document.getElementById("leftspeed").value}
+                });
+            }
+            $("#kbutton").css("background-color","yellow");
+        }
+    
+        if (keyCode == 76)
+        {
+            var rightspeed = parseInt(document.getElementById("rightspeed").value);
+            if (rightspeed < 9)
+            {
+                document.getElementById("rightspeed").value = rightspeed + 1;
+                $.ajax({
+                    url: '/control',
+                    type: 'POST',
+                    data: {right: document.getElementById("rightspeed").value}
+                });
+            }
+            $("#lbutton").css("background-color","yellow");
+        }
+    
+        if (keyCode == 74)
+        {
+            var rightspeed = parseInt(document.getElementById("rightspeed").value);
+            if (rightspeed > 0)
+            {
+                document.getElementById("rightspeed").value = rightspeed - 1;
+                $.ajax({
+                    url: '/control',
+                    type: 'POST',
+                    data: {right: document.getElementById("rightspeed").value}
+                });
+            }
+            $("#jbutton").css("background-color","yellow");
+        }
+
+        if (keyCode == 87)
+        {
+            $("#wbutton").css("background-color","yellow");
+        }
+    
+        if (keyCode == 65)
+        {
+            $("#abutton").css("background-color","yellow");
+        }
+        
+        if (keyCode == 83)
+        {
+            $("#sbutton").css("background-color","yellow");
+        }
+        
+        if (keyCode == 68)
+        {
+            $("#dbutton").css("background-color","yellow");
+        }
+        
+        $.ajax({
+                url: '/control',
+                type: 'POST',
+                data: {keyUp:keyCode }
+        });
+    });
+});
+</script>
+</head>
+<body>
+<div data-role="page">
+  <div data-role="main" class="ui-content">
+    <form>
+        <label for="switch">Throughput</label>
+        <input type="textbox" id="throughput">
+    </form>
+    <div style="width:100px; height:60px; position:absolute; top:400; right: 200">
+    <form>
+        <label for="switch">Left Speed</label>
+        <input type="textbox" id="leftspeed" value=0 style="width:35px; height:35px">
+    </form>
+    </div>
+    <div style="width:100px; height:60px; position:absolute; top:462; right:200">
+    <form>
+        <label for="switch">Right Speed</label>
+        <input type="textbox" id="rightspeed" value=0 style="width:35px; height:35px">
+    </form>
+    </div>
+    <div id="w" style="width:60px; height:60px; position:absolute; left:70px; top:400px;">
+    <button id="wbutton" style="width:55px; height:55px; background-color:F0FFFF">W</button>
+    </div>
+    <div id="a" style="width:60px; height:60px; position:absolute; left:8px; top:462px;">
+    <button id="abutton" style="width:55px; height:55px; background-color:F0FFFF">A</button>
+    </div>
+    <div id="s" style="width:60px; height:60px; position:absolute; left:70px; top:462px;">
+    <button id="sbutton" style="width:55px; height:55px; background-color:F0FFFF">S</button>
+    </div>
+    <div id="d" style="width:60px; height:60px; position:absolute; left:132px; top:462px;">
+    <button id="dbutton" style="width:55px; height:55px; background-color:F0FFFF">D</button>     
+    </div>
+    <div id="i" style="width:60px; height:60px; position:absolute; right:70px; top:400px;">
+    <button id="ibutton" style="width:55px; height:55px; background-color:F0FFFF">I</button>
+    </div>
+    <div id="j" style="width:60px; height:60px; position:absolute; right:132px; top:462px;">
+    <button id="jbutton" style="width:55px; height:55px; background-color:F0FFFF">J</button>
+    </div>
+    <div id="k" style="width:60px; height:60px; position:absolute; right:70px; top:462px;">
+    <button id="kbutton" style="width:55px; height:55px; background-color:F0FFFF">K</button>
+    </div>
+    <div id="l" style="width:60px; height:60px; position:absolute; right:8px; top:462px;">
+    <button id="lbutton" style="width:55px; height:55px; background-color:F0FFFF">L</button>     
+    </div>  
+ </div>
+</div>
+</body>
+</html>
