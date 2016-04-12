@@ -5,8 +5,7 @@ import serial
 import time
 import sys
 
-
-#ard = serial.Serial('/dev/ttyACM0',9600)
+ard = serial.Serial('/dev/ttyACM0',9600)
 
 
 CODE_FILE = './code.html'
@@ -23,45 +22,45 @@ def do_control():
     keyup = request.forms.get('keyUp')
     leftspeed = request.forms.get('left')
     rightspeed = request.forms.get('right')
-    #prabhat added
 
     if leftspeed is not None:
-        #ard.write('l');
-        #ard.write(leftspeed)
+        ard.write('l');
+        ard.write(leftspeed)
         print "left"
     if rightspeed is not None:
-        #ard.write('r');
-        #ard.write(rightspeed)
-        print "right"
+        ard.write('r');
+        ard.write(rightspeed)
     if keyup is not None:
         print "keyup: " + chr(int(keyup))
         keyup = chr(int(keyup))
         if keyup == 'W':
             print "W"
-            #ard.write('f');
+            ard.write('f');
         elif keyup == 'A':
-            #ard.write('a');
+            ard.write('a');
             print "A"
             # TODO: MOVE LEFT
             pass
         elif keyup == 'S':
             # TODO: MOVE BACKWARD
-            print "S"
-            #ard.write('r')
+            ard.write('b')
             pass
         elif keyup == 'D':
             # TODO: MOVE RIGHT
             print "D"
-            #ard.write('d');
+            ard.write('d');
             pass
         elif keyup == "F":
-            # TODO BREAK BOTH WHEELS
+            # TODO Full stop both
             print "F"
-            #ard.write('b');
+            ard.write('f');
+
 def serialRead():
     while True:
-        #print ard.readline()
-        x = 0
+        # print ard.readline()
+        # TODO: Print this value to the web browser, Prabhat
+        val = 69
+
 def pingGoogle():
     while True:
         process = subprocess.Popen("ping -c 2 -q www.google.com > /dev/null && echo $?", stdout=subprocess.PIPE, \

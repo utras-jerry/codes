@@ -5,15 +5,51 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script>
+var prime1 = false;
+var prime2 = false;
+var sweep = false;
+
 $(document).ready(function() {
     $(window).keyup(function(event){
         var keyCode = event.keyCode;
     
+        if (keyCode == 89)
+        {
+            sweep = !sweep;
+            if (sweep)
+            {
+                document.getElementById("sweepbutton").innerHTML = "Sweep (y) ON";
+                $("#sweepbutton").css("background-color", "yellow");
+            } 
+            else
+            {
+                document.getElementById("sweepbutton").innerHTML = "Sweep (y) OFF";
+                $("#sweepbutton").css("background-color", "#F0FFFF");
+            }
+        }
+
         if (keyCode == 73)
         {
             $("#ibutton").css("background-color","#F0FFFF");
         }
-    
+        
+        if (keyCode == 80)
+        {
+            prime1 = false;
+            $("#primebuttona").css("background-color", "#F0FFFF");
+        }
+
+        if(keyCode == 90)
+        {
+            prime2 = false;
+            $("#primebuttonb").css("background-color", "#F0FFFF");
+        }        
+
+        if (keyCode == 90)
+        {
+            prime2 = false;
+        }
+ 
         if (keyCode == 75)
         {
             $("#kbutton").css("background-color","#F0FFFF");
@@ -67,7 +103,7 @@ $(document).ready(function() {
             }
             $("#ibutton").css("background-color","yellow");
         }
-    
+
         if (keyCode == 75)
         {
             var leftspeed = parseInt(document.getElementById("leftspeed").value);
@@ -83,6 +119,26 @@ $(document).ready(function() {
             $("#kbutton").css("background-color","yellow");
         }
     
+        if (keyCode == 80)
+        {
+            prime1= true;
+            $("#primebuttona").css("background-color", "yellow");
+        }        
+
+        if (keyCode == 90)
+        {
+            prime2 = true;
+            $("#primebuttonb").css("background-color", "yellow");
+        }
+
+        if ( keyCode == 32)
+        {
+            if (prime1 && prime2)
+            {
+               $("#firebeanbag").css("background-color", "red"); 
+            }
+        }     
+
         if (keyCode == 76)
         {
             var rightspeed = parseInt(document.getElementById("rightspeed").value);
@@ -184,8 +240,20 @@ $(document).ready(function() {
     </div>
     <div id="l" style="width:60px; height:60px; position:absolute; right:8px; top:462px;">
     <button id="lbutton" style="width:55px; height:55px; background-color:F0FFFF">L</button>     
+    </div>
+    <div id="primea" style="width:150px; height:60px; position:absolute; right:325px; top:462px;">
+    <button id="primebuttona" style="width:150px; height:55px; background-color:F0FFFF">Prime (p)</button>
+    </div> 
+    <div id="primeb" style="width:150px; height:60px; position:absolute; right:490px; top:462px;">
+    <button id="primebuttonb" style="width:150px; height:55px; background-color:F0FFFF">Prime (z)</button>
+    </div>
+    <div id="Fire" style="width:350px; height:60px; position:absolute; right:665px; top:462px;">
+    <button id="firebeanbag" style="width:350px; height:55px; background-color:f0ffff">FIRE (spacebar)</button> 
     </div>  
- </div>
+    <div id="sweep" style="width:200px; height:60px; position:absolute; right:50px; top:50px;">
+    <button id="sweepbutton" style="width:200px; height:55px; background-color:f0ffff">Sweep (y) OFF</button> 
+    </div>  
+</div>
 </div>
 </body>
 </html>
